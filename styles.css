@@ -30,7 +30,7 @@
 
 body {
   font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
-  background: #0b0b0b;
+  background: #070707;
   color: var(--mist);
   min-height: 100vh;
   scroll-behavior: smooth;
@@ -59,16 +59,41 @@ h1, h2, h3, h4 {
   mix-blend-mode: soft-light;
 }
 
+.utility-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 64px;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247, 245, 242, 0.65);
+  border-bottom: 1px solid rgba(240, 178, 71, 0.2);
+  background: rgba(6, 6, 6, 0.95);
+  position: relative;
+  z-index: 5;
+}
+
+.utility-bar span:last-child {
+  color: rgba(247, 245, 242, 0.85);
+}
+
 .site-header {
-  max-width: var(--max-width);
-  margin: 32px auto 24px;
-  padding: 0 32px 18px;
+  width: 100%;
+  margin: 0;
+  padding: 16px 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   animation: fadeDown 0.9s ease both;
-  border-bottom: 1px solid var(--limo-line);
+  border-bottom: 1px solid rgba(240, 178, 71, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  background: rgba(6, 6, 6, 0.92);
+  backdrop-filter: blur(8px);
 }
 
 .brand {
@@ -88,15 +113,16 @@ h1, h2, h3, h4 {
 
 .brand-text span {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--mist);
 }
 
 .brand-text small {
-  color: rgba(247, 245, 242, 0.65);
-  letter-spacing: 0.08em;
+  color: rgba(247, 245, 242, 0.7);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   font-size: 0.7rem;
 }
@@ -104,9 +130,9 @@ h1, h2, h3, h4 {
 .site-nav {
   display: flex;
   gap: 20px;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.18em;
 }
 
 .site-nav a {
@@ -132,9 +158,9 @@ h1, h2, h3, h4 {
 }
 
 .ghost-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--mist);
+  background: transparent;
+  border: 1px solid rgba(240, 178, 71, 0.5);
+  color: var(--gold);
   padding: 12px 18px;
   border-radius: 8px;
   font-weight: 600;
@@ -148,24 +174,33 @@ h1, h2, h3, h4 {
 main {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 32px 60px;
+  padding: 40px 32px 80px;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: 1fr;
   gap: 40px;
   align-items: center;
-  padding: 28px 0 40px;
+  padding: 120px 0 90px;
   position: relative;
   overflow: hidden;
+  border-radius: 0;
+  min-height: 70vh;
+  background-image: linear-gradient(120deg, rgba(6, 6, 6, 0.88), rgba(6, 6, 6, 0.55)),
+    url("suburban-main.jpg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  margin: 0 calc(50% - 50vw);
 }
 
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(11, 11, 11, 0.95), rgba(11, 11, 11, 0.4) 45%, rgba(214, 180, 81, 0.05));
+  background: radial-gradient(circle at 20% 20%, rgba(240, 178, 71, 0.15), transparent 55%),
+    radial-gradient(circle at 80% 10%, rgba(240, 178, 71, 0.12), transparent 45%);
   pointer-events: none;
 }
 
@@ -179,21 +214,17 @@ main {
   background: linear-gradient(90deg, transparent, var(--limo-line), transparent);
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 55%),
-    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.06), transparent 45%);
-  opacity: 0.8;
-  animation: sweep 10s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
 .hero-content h1 {
-  font-size: clamp(2.6rem, 3.6vw, 3.6rem);
+  font-size: clamp(2.8rem, 4vw, 4rem);
   margin: 14px 0 16px;
   letter-spacing: 0.01em;
+}
+
+.hero-content {
+  max-width: 640px;
+  padding: 0 64px;
+  position: relative;
+  z-index: 1;
 }
 
 .tag {
@@ -218,8 +249,8 @@ main {
 }
 
 .lede {
-  color: rgba(247, 245, 242, 0.75);
-  font-size: 1.05rem;
+  color: rgba(247, 245, 242, 0.78);
+  font-size: 1.1rem;
   max-width: 520px;
 }
 
@@ -238,25 +269,22 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
 }
 
 .primary-btn {
-  background: linear-gradient(135deg, var(--olive), var(--sage-dark));
+  background: var(--gold);
   color: #0b0b0b;
-  box-shadow: 0 18px 30px var(--glow);
+  box-shadow: 0 18px 30px rgba(240, 178, 71, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
 }
 
 .secondary-btn {
-  border: 1px solid var(--olive);
-  color: var(--olive);
-  transition: transform 0.3s ease, border 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
+  border: 1px solid rgba(240, 178, 71, 0.7);
+  color: var(--gold);
+  transition: transform 0.3s ease, border 0.3s ease, color 0.3s ease;
 }
 
 .primary-btn:hover,
@@ -282,13 +310,15 @@ main {
 .hero-metrics div {
   padding: 14px;
   border-radius: 8px;
-  border: 1px solid rgba(214, 180, 81, 0.25);
-  background: rgba(11, 11, 11, 0.9);
+  border: 1px solid rgba(240, 178, 71, 0.28);
+  background: rgba(6, 6, 6, 0.85);
 }
 
 .hero-metrics span {
   color: rgba(247, 245, 242, 0.6);
   font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
 
 .trust-row div {
@@ -343,7 +373,7 @@ main {
 }
 
 .section {
-  padding: 50px 0;
+  padding: 70px 0;
 }
 
 .section.light {
@@ -376,6 +406,7 @@ main {
 .section-header h2 {
   font-size: clamp(2rem, 2.4vw, 2.8rem);
   text-transform: uppercase;
+  color: var(--gold);
 }
 
 .section-header p {
@@ -390,6 +421,46 @@ main {
   height: 1px;
   margin-top: 10px;
   background: var(--limo-line);
+}
+
+.services {
+  background: rgba(10, 10, 10, 0.85);
+  border-radius: var(--radius-lg);
+  padding: 60px 32px;
+  border: 1px solid rgba(240, 178, 71, 0.15);
+  box-shadow: var(--shadow);
+}
+
+.service-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.service-tile {
+  background: rgba(6, 6, 6, 0.9);
+  border-radius: 12px;
+  padding: 22px;
+  border: 1px solid rgba(240, 178, 71, 0.18);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: 10px;
+}
+
+.service-tile h3 {
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+}
+
+.service-tile p {
+  color: rgba(247, 245, 242, 0.7);
+}
+
+.service-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 
 .fleet-showcase .section-header {
@@ -408,7 +479,8 @@ main {
   padding: 18px;
   display: grid;
   gap: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(240, 178, 71, 0.15);
+  border-top: 1px solid rgba(240, 178, 71, 0.45);
   box-shadow: var(--shadow-soft);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   color: var(--mist);
@@ -481,9 +553,11 @@ main {
 }
 
 .pricing {
-  background: var(--olive-soft);
-  border-radius: 12px;
-  padding: 40px 32px;
+  background: rgba(10, 10, 10, 0.9);
+  border-radius: var(--radius-lg);
+  padding: 60px 32px;
+  border: 1px solid rgba(240, 178, 71, 0.18);
+  box-shadow: var(--shadow);
 }
 
 .pricing-grid {
@@ -493,10 +567,10 @@ main {
 }
 
 .pricing-card {
-  background: #0b0b0b;
+  background: rgba(6, 6, 6, 0.95);
   border-radius: 12px;
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(240, 178, 71, 0.12);
   display: grid;
   gap: 14px;
   box-shadow: var(--shadow-soft);
@@ -515,6 +589,7 @@ main {
 .pricing-card .price {
   font-size: 1.4rem;
   font-weight: 600;
+  color: var(--gold);
 }
 
 .pricing-card .fine-print {
@@ -534,7 +609,7 @@ main {
 }
 
 .pricing-card.featured {
-  border: 1px solid rgba(214, 180, 81, 0.6);
+  border: 1px solid rgba(240, 178, 71, 0.65);
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.6);
   transform: translateY(-6px);
 }
@@ -561,11 +636,11 @@ main {
 }
 
 .experience-panel {
-  background: rgba(10, 10, 10, 0.88);
+  background: rgba(6, 6, 6, 0.92);
   border-radius: 12px;
   padding: 24px;
-  border: 1px solid var(--limo-line);
-  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(240, 178, 71, 0.3);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
 }
 
 .experience-panel h3 {
@@ -589,21 +664,134 @@ main {
 
 .booking {
   display: grid;
-  gap: 22px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
 }
 
-.booking-card {
-  background: rgba(10, 10, 10, 0.92);
-  border-radius: 12px;
-  padding: 24px;
+.booking-ui {
+  background: rgba(10, 10, 10, 0.9);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(240, 178, 71, 0.2);
   box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.booking-topnav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  background: rgba(6, 6, 6, 0.95);
+  border-radius: 10px;
+  border: 1px solid rgba(240, 178, 71, 0.2);
+}
+
+.booking-tab {
+  background: transparent;
+  border: none;
+  color: rgba(247, 245, 242, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  padding: 8px 6px;
+  cursor: pointer;
+}
+
+.booking-tab.active {
+  color: var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+
+.booking-steps {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin: 24px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  color: rgba(247, 245, 242, 0.6);
+}
+
+.booking-step {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.booking-step span {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(240, 178, 71, 0.3);
+}
+
+.booking-step.active span {
+  background: var(--gold);
+  color: #0b0b0b;
+  border-color: var(--gold);
+}
+
+.booking-panels {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.booking-panel {
+  background: rgba(6, 6, 6, 0.92);
+  border-radius: 14px;
+  border: 1px solid rgba(240, 178, 71, 0.18);
+  box-shadow: var(--shadow-soft);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.panel-header h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+
+.mode-toggle {
+  display: inline-flex;
+  border: 1px solid rgba(240, 178, 71, 0.35);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mode-toggle .toggle {
+  background: transparent;
+  color: rgba(247, 245, 242, 0.7);
+  border: none;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.65rem;
+  cursor: pointer;
+}
+
+.mode-toggle .toggle.active {
+  background: var(--gold);
+  color: #0b0b0b;
 }
 
 .booking-form {
   display: grid;
   gap: 16px;
-  margin-top: 18px;
 }
 
 .booking-form label {
@@ -615,10 +803,185 @@ main {
 
 .booking-form input {
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(240, 178, 71, 0.18);
   border-radius: 8px;
   padding: 10px 12px;
   color: var(--mist);
+}
+
+.field-row {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.location-block {
+  display: grid;
+  gap: 10px;
+}
+
+.location-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.location-tabs {
+  display: flex;
+  gap: 10px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(247, 245, 242, 0.55);
+}
+
+.location-tab {
+  background: transparent;
+  border: 1px solid transparent;
+  color: inherit;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.65rem;
+  cursor: pointer;
+}
+
+.location-tab:hover {
+  color: var(--mist);
+}
+
+.location-tab.active {
+  border-color: rgba(240, 178, 71, 0.5);
+  color: var(--gold);
+}
+
+.location-tabs span {
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+/* Legacy fallback for any remaining span tabs */
+.location-tabs span.active {
+  border-color: rgba(240, 178, 71, 0.5);
+  color: var(--gold);
+}
+
+.autocomplete-field {
+  position: relative;
+}
+
+.autocomplete-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 6px;
+  background: #050505;
+  border: 1px solid rgba(240, 178, 71, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  z-index: 10;
+  overflow: hidden;
+  display: none;
+}
+
+.autocomplete-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  color: rgba(247, 245, 242, 0.85);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.autocomplete-item:hover {
+  background: rgba(240, 178, 71, 0.12);
+  color: var(--mist);
+}
+
+.add-stop {
+  justify-self: end;
+  background: transparent;
+  border: none;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.stop-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.remove-stop {
+  background: transparent;
+  border: 1px solid rgba(240, 178, 71, 0.3);
+  color: var(--gold);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+}
+
+.count-row {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.map-panel {
+  padding: 0;
+  overflow: hidden;
+}
+
+.map-header {
+  background: #000;
+  color: #fff;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  border-bottom: 1px solid rgba(240, 178, 71, 0.25);
+}
+
+.map-body {
+  position: relative;
+  min-height: 320px;
+  flex: 1;
+}
+
+.booking-map {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  display: block;
+}
+
+.map-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgba(247, 245, 242, 0.6);
+  background: rgba(6, 6, 6, 0.55);
 }
 
 .booking-info {
@@ -627,10 +990,10 @@ main {
 }
 
 .contact-card {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(6, 6, 6, 0.88);
   border-radius: 12px;
   padding: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(240, 178, 71, 0.2);
 }
 
 .contact-card span {
@@ -661,7 +1024,7 @@ main {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 24px 32px 40px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(240, 178, 71, 0.2);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -720,9 +1083,18 @@ main {
 }
 
 @media (max-width: 800px) {
+  .utility-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    letter-spacing: 0.12em;
+    padding: 10px 24px;
+  }
+
   .site-header {
     flex-direction: column;
     align-items: flex-start;
+    padding: 16px 24px;
   }
 
   .site-nav {
@@ -732,5 +1104,23 @@ main {
   .hero-cta {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .hero-content {
+    padding: 0 24px;
+  }
+
+  .booking-topnav {
+    gap: 10px;
+  }
+
+  .booking-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-row {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
