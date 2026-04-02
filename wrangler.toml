@@ -1,0 +1,8 @@
+name = "luxtravco-booking"
+main = "worker-index.js"
+compatibility_date = "2026-04-02"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "luxtravco_bookings"
+database_id = "efdc9bef-c69d-40e0-915a-230d1c7a59e4"
